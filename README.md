@@ -1,11 +1,10 @@
-# Consume REST API with React
-Hi! One easy way to consume a rest api with React
+# frontend for wares mutual aid spreadsheet
 
-## Objective
-Consume a rest api [http://jsonplaceholder.typicode.com/users](http://jsonplaceholder.typicode.com/users) and show every data in our browser using card from bootstrap 4
+the wares mutual aid spreadsheet connects individuals or groups of people in Singapore who have needs and offers for support. see [tinyurl.com/waresmutualaid](https://docs.google.com/spreadsheets/d/1XzScy_hXVg7hVScZ_g6RBxq-ubkyvt601zD88w1IOo4/edit#gid=0) for the original spreadsheet. 
 
+this is a React frontend consuming the Google Sheets API.
 
-## Requirements
+## requirements
 
  - Node & npm installed (in this project run **node: v10.15.1** & **npm: 6.11.2**)
  - React Version **>= 2.1.1**
@@ -24,6 +23,3 @@ Now let's start our application run:
     npm start
 Open your browser:
 [http://localhost:3000/](http://localhost:3000/)
-## Demo
-This image is of my project running
-![enter image description here](https://res.cloudinary.com/dn5xwgf9p/image/upload/v1570209831/preview_github/preview_consumer_aqwgjl.png)
