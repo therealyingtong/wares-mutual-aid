@@ -3,6 +3,9 @@ import React from 'react'
     const Offers = ({ datesOffers, editsOffers, namesOffers, locationsOffers, contactsOffers, detailsOffers, labelsOffers, updateOffers, statusOffers, targetLabelOffers, hideFulfilledOffers, newestFirstOffers }) => {
 
 		var matchIndices = []
+		var unfulfilledIndices = []
+		var partialIndices = []
+
 		if (targetLabelOffers){
 			for (var i = 0; i < labelsOffers.length; i++) {
 				const label_text = labelsOffers[i].toString()
@@ -16,13 +19,13 @@ import React from 'react'
 		if (newestFirstOffers) matchIndices.reverse()
 
 		if (hideFulfilledOffers) {
-			var unfulfilledIndices = []
 			for (var j = 0; j < matchIndices.length; j++) {
 				const _status = statusOffers[matchIndices[j]]
 				var status_text = ''
 				if (_status) {
 					status_text = _status.toString();
 				}
+				if (status_text.includes("Partial")) partialIndices.push(j)
 				if (!status_text.includes("Fulfilled")) unfulfilledIndices.push(j)
 			}
 			matchIndices = unfulfilledIndices.map(j => matchIndices[j])
@@ -32,6 +35,8 @@ import React from 'react'
 			<div class="container-offers">
 				<br></br>
 			<center><h2>offers</h2></center>
+			<center>fulfilled: {datesOffers.length - unfulfilledIndices.length}, partial: {partialIndices.length}, total: {datesOffers.length}</center><br></br>
+
 				{matchIndices.map((index) => (
 				<div class="card">
 					<div class="card-header">{datesOffers[index]}, edited [{editsOffers[index]}], status: [{statusOffers[index]}] </div>
