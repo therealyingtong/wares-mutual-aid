@@ -7,39 +7,81 @@ class App extends Component {
 	constructor(props){
 		super(props)
 		this.state = {
-			dates: [],
-			edits: [],
-			names: [],
-			locations: [],
-			contacts: [],
-			details: [],
-			labels: [],
-			updates: [],
-			status: [],
+			datesNeeds: [],
+			editsNeeds: [],
+			namesNeeds: [],
+			locationsNeeds: [],
+			contactsNeeds: [],
+			detailsNeeds: [],
+			labelsNeeds: [],
+			updateNeeds: [],
+			statusNeeds: [],
 			assistedBy: [],
-			targetLabel: '',
-			dates1: [],
-			edits1: [],
-			names1: [],
-			locations1: [],
-			contacts1: [],
-			details1: [],
-			labels1: [],
-			updates1: [],
-			status1: [],
-			targetLabel1: ''
+			datesOffers: [],
+			editsOffers: [],
+			namesOffers: [],
+			locationsOffers: [],
+			contactsOffers: [],
+			detailsOffers: [],
+			labelsOffers: [],
+			updateOffers: [],
+			statusOffers: [],
+			targetLabelNeeds: '',
+			targetLabelOffers: '',
+			hideFulfilledNeeds: true,
+			hideFulfilledOffers: true,
+			newestFirstNeeds: true,
+			newestFirstOffers: true
 		};
-		this.handleChange = this.handleChange.bind(this)
-		this.handleChange1 = this.handleChange1.bind(this)
+		this.handleFilterNeeds = this.handleFilterNeeds.bind(this)
+		this.handleFilterOffers = this.handleFilterOffers.bind(this)
+		this.handleNewestNeeds = this.handleNewestNeeds.bind(this)
+		this.handleNewestOffers = this.handleNewestOffers.bind(this)
+		this.handleFulfilledNeeds = this.handleFulfilledNeeds.bind(this)
+		this.handleFulfilledOffers = this.handleFulfilledOffers.bind(this)
 	}
 
-	handleChange(event) {
-		this.setState({ targetLabel: event.target.value })
+
+	handleFilterNeeds(event) {
+		this.setState({ targetLabelNeeds: event.target.value })
 	}
 
-	handleChange1(event) {
-		this.setState({ targetLabel1: event.target.value })
+	handleFilterOffers(event) {
+		this.setState({ targetLabelOffers: event.target.value })
 	}
+
+	handleNewestNeeds(event) {
+		const target = event.target;
+		const value = target.name === 'newestFirstNeeds' ? target.checked : target.value;
+		const name = target.name;
+		this.setState({
+		  [name]: value    });	
+	}
+
+	handleNewestOffers(event) {
+		const target = event.target;
+		const value = target.name === 'newestFirstOffers' ? target.checked : target.value;
+		const name = target.name;
+		this.setState({
+		  [name]: value    });	
+	}
+
+	handleFulfilledNeeds(event) {
+		const target = event.target;
+		const value = target.name === 'hideFulfilledNeeds' ? target.checked : target.value;
+		const name = target.name;
+		this.setState({
+		  [name]: value    });
+	}
+
+	handleFulfilledOffers(event) {
+		const target = event.target;
+		const value = target.name === 'hideFulfilledOffers' ? target.checked : target.value;
+		const name = target.name;
+		this.setState({
+		  [name]: value    });
+	}
+
   //get rest api
 
   async componentDidMount() {
@@ -50,7 +92,7 @@ class App extends Component {
 		mode: 'cors'
 	}
 
-	const keys = ['dates', 'edits', 'names', 'locations', 'contacts', 'details', 'labels', 'status', 'assistedBy', 'updates']
+	const keys = ['datesNeeds', 'editsNeeds', 'namesNeeds', 'locationsNeeds', 'contactsNeeds', 'detailsNeeds', 'labelsNeeds', 'statusNeeds', 'assistedBy', 'updateNeeds']
 	const rowStart = '4'
 	const rowEnd = '200'
 	const columns = ['A', 'K', 'B', 'H', 'I', 'F', 'E', 'J', 'L', 'M']
@@ -68,7 +110,7 @@ class App extends Component {
 		this.setState(obj)
 	}
 
-	const keys1 = ['dates1', 'edits1', 'names1', 'locations1', 'contacts1', 'details1', 'labels1', 'status1', 'updates1']
+	const keys1 = ['datesOffers', 'editsOffers', 'namesOffers', 'locationsOffers', 'contactsOffers', 'detailsOffers', 'labelsOffers', 'statusOffers', 'updateOffers']
 	const rowStart1 = '4'
 	const rowEnd1 = '200'
 	const columns1 = ['A', 'K', 'B', 'H', 'I', 'F', 'E', 'J', 'L']
@@ -86,14 +128,6 @@ class App extends Component {
 		this.setState(obj)
 	}
 }
-
-	componentDidUpdate(prevProps) {
-		// Typical usage (don't forget to compare props):
-		if (this.props.targetLabel !== prevProps.targetLabel) {
-		  this.fetchData(this.props.targetLabel);
-		}
-	  }
-
   
   //rendering component with data from rest api
   render() {
@@ -104,43 +138,58 @@ class App extends Component {
 		<label><b>filter needs:</b> ‎</label>
         <input
           type="text"
-          value={this.state.targetLabel}
-          onChange={this.handleChange}
+          value={this.state.targetLabelNeeds}
+          onChange={this.handleFilterNeeds}
         />
 		<h6>(try typing "funds", "$", "food", etc.)</h6>
+		<br></br>
     </form>
+	<input type="checkbox" name="hideFulfilledNeeds" checked={this.state.hideFulfilledNeeds} onChange={this.handleFulfilledNeeds}></input>
+	<label for="hideFulfilledNeeds"> hide fulfilled needs</label><br></br>
+	<input type="checkbox" id="newestFirstNeeds" name="newestFirstNeeds" checked={this.state.newestFirstNeeds} value="newestFirstNeeds" onChange={this.handleNewestNeeds}></input>
+	<label for="newestFirstNeeds"> show newest first</label><br></br>
 	</div>
+	
 	<div style={{width: '45%', float: 'right', paddingRight: '5%'}}>
 	<form>
 		<label><b>filter offers: ‎‎‎‎‎‎‎‎</b> </label>
         <input 
-		  onChange={this.handleChange1}
+		  onChange={this.handleFilterOffers}
         />
 		<h6>(try typing "funds", "$", "labour", etc.)</h6>
+		<br></br>
     </form>
+	<input type="checkbox" name="hideFulfilledOffers" checked={this.state.hideFulfilledOffers} onChange={this.handleFulfilledOffers}></input>
+	<label for="hideFulfilledOffers"> hide fulfilled offers</label><br></br>
+	<input type="checkbox" id="newestFirstOffers" name="newestFirstOffers" checked={this.state.newestFirstOffers} value="newestFirstOffers" onChange={this.handleNewestOffers}></input>
+	<label for="newestFirstOffers"> show newest first</label><br></br>
 	</div>
-	< Needs dates = {this.state.dates}
-	edits = {this.state.edits}
-	names = {this.state.names}
-	locations={this.state.locations}
-	contacts={this.state.contacts}
-	details={this.state.details} 
-	labels={this.state.labels}
-	status={this.state.status}
-	updates={this.state.updates}
+	< Needs datesNeeds = {this.state.datesNeeds}
+	editsNeeds = {this.state.editsNeeds}
+	namesNeeds = {this.state.namesNeeds}
+	locationsNeeds={this.state.locationsNeeds}
+	contactsNeeds={this.state.contactsNeeds}
+	detailsNeeds={this.state.detailsNeeds} 
+	labelsNeeds={this.state.labelsNeeds}
+	statusNeeds={this.state.statusNeeds}
+	updateNeeds={this.state.updateNeeds}
 	assistedBy={this.state.assistedBy}
-	targetLabel={this.state.targetLabel}
+	targetLabelNeeds={this.state.targetLabelNeeds}
+	hideFulfilledNeeds={this.state.hideFulfilledNeeds}
+	newestFirstNeeds={this.state.newestFirstNeeds}
 	/>
-	< Offers dates1 = {this.state.dates1}
-	edits1 = {this.state.edits1}
-	names1 = {this.state.names1}
-	locations1={this.state.locations1}
-	contacts1={this.state.contacts1}
-	details1={this.state.details1} 
-	labels1={this.state.labels1}
-	status1={this.state.status1}
-	updates1={this.state.updates1}
-	targetLabel1={this.state.targetLabel1}
+	< Offers datesOffers = {this.state.datesOffers}
+	editsOffers = {this.state.editsOffers}
+	namesOffers = {this.state.namesOffers}
+	locationsOffers={this.state.locationsOffers}
+	contactsOffers={this.state.contactsOffers}
+	detailsOffers={this.state.detailsOffers} 
+	labelsOffers={this.state.labelsOffers}
+	statusOffers={this.state.statusOffers}
+	updateOffers={this.state.updateOffers}
+	targetLabelOffers={this.state.targetLabelOffers}
+	hideFulfilledOffers={this.state.hideFulfilledOffers}
+	newestFirstOffers={this.state.newestFirstOffers}
 	/>
 	
 	</>

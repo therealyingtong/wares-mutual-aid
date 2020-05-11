@@ -1,17 +1,31 @@
 import React from 'react'
 
-    const Offers = ({ dates1, edits1, names1, locations1, contacts1, details1, labels1, updates1, status1, targetLabel1 }) => {
+    const Offers = ({ datesOffers, editsOffers, namesOffers, locationsOffers, contactsOffers, detailsOffers, labelsOffers, updateOffers, statusOffers, targetLabelOffers, hideFulfilledOffers, newestFirstOffers }) => {
 
 		var matchIndices = []
-		if (targetLabel1){
-			console.log('hi ', targetLabel1)
-			for (var i = 0; i < labels1.length; i++) {
-				const label_text = labels1[i].toString()
-				const details_text = details1[i].toString()
-				if (label_text.toLowerCase().includes(targetLabel1.toLowerCase()) || details_text.toLowerCase().includes(targetLabel1.toLowerCase())) matchIndices.push(i)
+		if (targetLabelOffers){
+			for (var i = 0; i < labelsOffers.length; i++) {
+				const label_text = labelsOffers[i].toString()
+				const detailsNeeds_text = detailsOffers[i].toString()
+				if (label_text.toLowerCase().includes(targetLabelOffers.toLowerCase()) || detailsNeeds_text.toLowerCase().includes(targetLabelOffers.toLowerCase())) matchIndices.push(i)
 			}
 		} else {
-			matchIndices = [...Array(dates1.length).keys()];
+			matchIndices = [...Array(datesOffers.length).keys()];
+		}
+
+		if (newestFirstOffers) matchIndices.reverse()
+
+		if (hideFulfilledOffers) {
+			var unfulfilledIndices = []
+			for (var j = 0; j < matchIndices.length; j++) {
+				const _status = statusOffers[matchIndices[j]]
+				var status_text = ''
+				if (_status) {
+					status_text = _status.toString();
+				}
+				if (!status_text.includes("Fulfilled")) unfulfilledIndices.push(j)
+			}
+			matchIndices = unfulfilledIndices.map(j => matchIndices[j])
 		}
 
 		return (
@@ -20,14 +34,14 @@ import React from 'react'
 			<center><h2>offers</h2></center>
 				{matchIndices.map((index) => (
 				<div class="card">
-					<div class="card-header">{dates1[index]}, edited [{edits1[index]}], status: [{status1[index]}] </div>
+					<div class="card-header">{datesOffers[index]}, edited [{editsOffers[index]}], status: [{statusOffers[index]}] </div>
 					<div class="card-body">
-					<h5 class="card-title">{index+1}. {names1[index]}</h5>
-				<h6 class="card-subtitle mb-2 text-muted">location: {locations1[index]}</h6>
-				<h6 class="card-subtitle mb-2 text-muted">labels: {labels1[index]}</h6>
-					<p class="card-text">{contacts1[index]}</p>
-					<p class="card-text">{details1[index]}</p>
-					<p class="card-text text-muted"><b>updates:</b> {updates1[index]}</p>
+					<h5 class="card-title">{index+1}. {namesOffers[index]}</h5>
+				<h6 class="card-subtitle mb-2 text-muted">location: {locationsOffers[index]}</h6>
+				<h6 class="card-subtitle mb-2 text-muted">labels: {labelsOffers[index]}</h6>
+					<p class="card-text">{contactsOffers[index]}</p>
+					<p class="card-text">{detailsOffers[index]}</p>
+					<p class="card-text text-muted"><b>updates:</b> {updateOffers[index]}</p>
 					</div>
 				</div>
 				))}
