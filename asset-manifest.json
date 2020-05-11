@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.js": "/wares-mutual-aid/static/js/main.c6ac0c87.chunk.js",
-    "main.js.map": "/wares-mutual-aid/static/js/main.c6ac0c87.chunk.js.map",
+    "main.js": "/wares-mutual-aid/static/js/main.38a88fa2.chunk.js",
+    "main.js.map": "/wares-mutual-aid/static/js/main.38a88fa2.chunk.js.map",
     "runtime-main.js": "/wares-mutual-aid/static/js/runtime-main.14a2d723.js",
     "runtime-main.js.map": "/wares-mutual-aid/static/js/runtime-main.14a2d723.js.map",
     "static/js/2.63e974b0.chunk.js": "/wares-mutual-aid/static/js/2.63e974b0.chunk.js",
     "static/js/2.63e974b0.chunk.js.map": "/wares-mutual-aid/static/js/2.63e974b0.chunk.js.map",
     "index.html": "/wares-mutual-aid/index.html",
-    "precache-manifest.9c00174930a8e151f5fc1e7b807bae3e.js": "/wares-mutual-aid/precache-manifest.9c00174930a8e151f5fc1e7b807bae3e.js",
+    "precache-manifest.6dc7c1c9cc99c55ccafa6c4725fbd799.js": "/wares-mutual-aid/precache-manifest.6dc7c1c9cc99c55ccafa6c4725fbd799.js",
     "service-worker.js": "/wares-mutual-aid/service-worker.js"
   }
 }
