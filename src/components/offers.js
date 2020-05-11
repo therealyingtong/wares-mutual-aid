@@ -6,11 +6,25 @@ import React from 'react'
 		var unfulfilledIndices = []
 		var partialIndices = []
 
+		var partialCount = 0
+		var fulfilledCount = 0
+
+		for (var i = 0; i < datesOffers.length; i++){
+			const _status = statusOffers[i]
+			var status_text = ''
+			if (_status) {
+				status_text = _status.toString();
+			}
+			if (status_text.includes("Partial")) partialCount++
+			if (status_text.includes("Fulfilled")) fulfilledCount++
+		}
+
 		if (targetLabelOffers){
 			for (var i = 0; i < labelsOffers.length; i++) {
 				const label_text = labelsOffers[i].toString()
-				const detailsNeeds_text = detailsOffers[i].toString()
-				if (label_text.toLowerCase().includes(targetLabelOffers.toLowerCase()) || detailsNeeds_text.toLowerCase().includes(targetLabelOffers.toLowerCase())) matchIndices.push(i)
+				const detailsOffers_text = detailsOffers[i].toString()
+				const namesOffers_text = namesOffers[i].toString()
+				if (label_text.toLowerCase().includes(targetLabelOffers.toLowerCase()) || detailsOffers_text.toLowerCase().includes(targetLabelOffers.toLowerCase()) || namesOffers_text.toLowerCase().includes(targetLabelOffers.toLowerCase())) matchIndices.push(i)
 			}
 		} else {
 			matchIndices = [...Array(datesOffers.length).keys()];
@@ -35,7 +49,7 @@ import React from 'react'
 			<div class="container-offers">
 				<br></br>
 			<center><h2>offers</h2></center>
-			<center>fulfilled: {datesOffers.length - unfulfilledIndices.length}, partial: {partialIndices.length}, total: {datesOffers.length}</center><br></br>
+			<center>fulfilled: {fulfilledCount}, partial: {partialCount}, total: {datesOffers.length}</center><br></br>
 
 				{matchIndices.map((index) => (
 				<div class="card">
@@ -46,7 +60,7 @@ import React from 'react'
 				<h6 class="card-subtitle mb-2 text-muted">labels: {labelsOffers[index]}</h6>
 					<p class="card-text">{contactsOffers[index]}</p>
 					<p class="card-text">{detailsOffers[index]}</p>
-					<p class="card-text text-muted"><b>updates:</b> {updateOffers[index]}</p>
+					<p class="card-text text-muted"><b>updates:</b> {updateOffers[index]}</p><input type="text"></input>
 					</div>
 				</div>
 				))}
