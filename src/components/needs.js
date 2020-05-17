@@ -1,8 +1,7 @@
 import React from 'react'
+import UpdateForm from './updateForm';
 
 class Needs extends React.Component {
-
-    // const Needs = ({ this.props.datesNeeds, this.props.editsNeeds, this.props.namesNeeds, this.props.locationsNeeds, this.props.contactsNeeds, this.props.detailsNeeds, this.props.labelsNeeds, this.props.updateNeeds, this.props.statusNeeds, this.props.assistedBy, this.props.targetLabelNeeds, this.props.hideFulfilledNeeds, this.props.newestFirstNeeds }) => {
 	
 	render() {
 
@@ -25,11 +24,11 @@ class Needs extends React.Component {
 
 		if (this.props.targetLabelNeeds){
 			for (var i = 0; i < this.props.labelsNeeds.length; i++) {
-				const label_text = this.props.labelsNeeds[i].toString()
-				const detailsNeeds_text = this.props.detailsNeeds[i].toString()
-				const namesNeeds_text = this.props.namesNeeds[i].toString()
+				const label_text = this.props.labelsNeeds[i].toString().toLowerCase()
+				const detailsNeeds_text = this.props.detailsNeeds[i].toString().toLowerCase()
+				const namesNeeds_text = this.props.namesNeeds[i].toString().toLowerCase()
 
-				if (label_text.toLowerCase().includes(this.props.targetLabelNeeds.toLowerCase()) || detailsNeeds_text.toLowerCase().includes(this.props.targetLabelNeeds.toLowerCase()) || namesNeeds_text.toLowerCase().includes(this.props.targetLabelNeeds.toLowerCase())) matchIndices.push(i)
+				if (label_text.includes(this.props.targetLabelNeeds.toLowerCase()) || detailsNeeds_text.includes(this.props.targetLabelNeeds.toLowerCase()) || namesNeeds_text.includes(this.props.targetLabelNeeds.toLowerCase())) matchIndices.push(i)
 			}
 		} else {
 			matchIndices = [...Array(this.props.datesNeeds.length).keys()];
@@ -64,14 +63,16 @@ class Needs extends React.Component {
 						<h6 class="card-subtitle mb-2 text-muted">labels: {this.props.labelsNeeds[index]}</h6>
 						<p class="card-text">{this.props.contactsNeeds[index]}</p>
 						<p class="card-text">{this.props.detailsNeeds[index]}</p>
-						<p class="card-text text-muted"><b>updates:</b></p> 
-						<textarea rows="2" style={{width:"90%"}} value={this.props.updateNeeds[index]}></textarea>
-						<input type="submit" value="submit changes"></input>
-						<br></br>
-						<br></br>
-						<p class="card-text text-muted"><b>assisted by:</b> </p>
-						<textarea rows="2" style={{width:"90%"}} value={this.props.assistedBy[index]}></textarea>
-						<input type="submit" value="submit changes"></input>
+						<UpdateForm index = {index}
+						updateOffers = {this.props.updateNeeds}
+						formText = {"updates"}
+						sheetName = {"Needs"}
+                        ></UpdateForm>
+						<UpdateForm index = {index}
+						updateOffers = {this.props.assistedBy}
+						formText = {"assisted by"}
+						sheetName = {"Needs"}
+						></UpdateForm>
 					</div>
 				</div>
 				))}

@@ -1,7 +1,39 @@
 import React from 'react'
+import UpdateForm from './updateForm';
 
 class Offers extends React.Component {
-	
+
+	constructor(props) {
+		super(props);
+
+		this.getRowNumber = this.getRowNumber.bind(this)
+	}
+
+	getRowNumber(name, date, contact, details, namesOffers, datesOffers, contactsOffers, detailsOffers) {
+
+		var namesOffers_text = '';
+		var datesOffers_text = '';
+		var contactsOffers_text = '';
+		var detailsOffers_text = '';
+
+		for (var i = 0; i < datesOffers.length; i++) {
+			if (typeof(namesOffers[i]) != "undefined") namesOffers_text = namesOffers[i].toString();
+			if (typeof(datesOffers[i]) != "undefined") datesOffers_text = datesOffers[i].toString();
+			if (typeof(contactsOffers[i]) != "undefined") contactsOffers_text = contactsOffers[i].toString();
+			if (typeof(detailsOffers[i]) != "undefined") detailsOffers_text = detailsOffers[i].toString();
+
+			if (
+				namesOffers_text.includes(name) &&
+				datesOffers_text.includes(date) &&
+				contactsOffers_text.includes(contact) &&
+				detailsOffers_text.includes(details)
+			) {
+				const rowNumber = i + 4;
+				return rowNumber;
+			}
+		}
+	}
+
 	render() {
 
 		var matchIndices = []
@@ -11,7 +43,7 @@ class Offers extends React.Component {
 		var partialCount = 0
 		var fulfilledCount = 0
 
-		for (var i = 0; i < this.props.datesOffers.length; i++){
+		for (var i = 0; i < this.props.datesOffers.length; i++) {
 			const _status = this.props.statusOffers[i]
 			var status_text = ''
 			if (_status) {
@@ -21,7 +53,7 @@ class Offers extends React.Component {
 			if (status_text.includes("Fulfilled")) fulfilledCount++
 		}
 
-		if (this.props.targetLabelOffers){
+		if (this.props.targetLabelOffers) {
 			for (var i = 0; i < this.props.labelsOffers.length; i++) {
 				const label_text = this.props.labelsOffers[i].toString()
 				const detailsOffers_text = this.props.detailsOffers[i].toString()
@@ -50,38 +82,44 @@ class Offers extends React.Component {
 		return (
 			<div class="container-offers">
 				<br></br>
-			<center><h2>offers</h2></center>
-			<center>fulfilled: {fulfilledCount}, partial: {partialCount}, total: {this.props.datesOffers.length}</center><br></br>
+				<center><h2>offers</h2></center>
+				<center>fulfilled: {fulfilledCount}, partial: {partialCount}, total: {this.props.datesOffers.length}</center><br></br>
 
 				{matchIndices.map((index) => (
-				<div class="card">
-					<div class="card-header">{this.props.datesOffers[index]}, edited [{this.props.editsOffers[index]}], status [{this.props.statusOffers[index]}] </div>
-					<div class="card-body">
-					<h5 class="card-title">{index+1}. {this.props.namesOffers[index]}</h5>
-				<h6 class="card-subtitle mb-2 text-muted">location: {this.props.locationsOffers[index]}</h6>
-				<h6 class="card-subtitle mb-2 text-muted">labels: {this.props.labelsOffers[index]}</h6>
-					<p class="card-text">{this.props.contactsOffers[index]}</p>
-					<p class="card-text">{this.props.detailsOffers[index]}</p>
-					<p class="card-text text-muted"><b>updates:</b> </p>
-					<textarea rows="2" style={{width:"90%"}} value={this.props.updateOffers[index]}></textarea>
-					<input type="submit" value="submit changes"></input>
-					{/* <form action="/action_page.php">
-					<label for="fname">First name:</label><br></br>
-					<input type="text" id="fname" name="fname" value="John"></input><br></br>
-					<label for="lname">Last name:</label><br></br>
-					<input type="text" id="lname" name="lname" value="Doe"><br></br></input>
-					<input type="submit" value="Submit"></input>
-					</form>  */}
+					<div class="card">
+						<div class="card-header">{this.props.datesOffers[index]}, edited [{this.props.editsOffers[index]}], status [{this.props.statusOffers[index]}] </div>
+						<div class="card-body">
+							<h5 class="card-title">{index + 1}. {this.props.namesOffers[index]}</h5>
+							<h6 class="card-subtitle mb-2 text-muted">location: {this.props.locationsOffers[index]}</h6>
+							<h6 class="card-subtitle mb-2 text-muted">labels: {this.props.labelsOffers[index]}</h6>
+							<p class="card-text">{this.props.contactsOffers[index]}</p>
+							<p class="card-text">{this.props.detailsOffers[index]}</p>
+							<UpdateForm index={index}
+								updateOffers={this.props.updateOffers}
+								formText={"updates"}
+								sheetName={"Offers"}
+								column={"L"}
+								row={this.getRowNumber(
+									this.props.namesOffers[index],
+									this.props.datesOffers[index],
+									this.props.contactsOffers[index],
+									this.props.detailsOffers[index],
+									this.props.namesOffers,
+									this.props.datesOffers,
+									this.props.contactsOffers,
+									this.props.detailsOffers
+								)}
+							></UpdateForm>
+						</div>
 					</div>
-				</div>
 				))}
 			</div>
-		)			
-		
+		)
 
-    };
+
+	};
 
 }
-    
+
 
 export default Offers

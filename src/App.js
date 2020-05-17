@@ -100,7 +100,6 @@ class App extends Component {
 	for (var i = 0; i < keys.length; i++){
 		const range = columns[i] + rowStart + ':' + columns[i] + rowEnd
 		const url = 'https://sheets.googleapis.com/v4/spreadsheets/' + sheetId + '/values/Needs!' + range + '?key=' + APIKey
-
 		const res = await fetch(url, options)
 		const data = await res.json()
 		var key = keys[i]
