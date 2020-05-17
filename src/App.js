@@ -135,13 +135,13 @@ class App extends Component {
 	<>
 	<div style={{width: '45%', float: 'left', paddingLeft: '5%'}}>
 	<form>
-		<label><b>filter needs:</b> ‎</label>
-        <input
+		<label><b>filter needs:</b></label>
+        <input 
           type="text"
           value={this.state.targetLabelNeeds}
           onChange={this.handleFilterNeeds}
         />
-		<h6>(try typing "funds", "$", "food", etc.)</h6>
+		<h6>(try "funds", "food", "urgent", etc.)</h6>
 		<br></br>
     </form>
 	<input type="checkbox" name="hideFulfilledNeeds" checked={this.state.hideFulfilledNeeds} onChange={this.handleFulfilledNeeds}></input>
@@ -152,11 +152,11 @@ class App extends Component {
 	
 	<div style={{width: '45%', float: 'right', paddingRight: '5%'}}>
 	<form>
-		<label><b>filter offers: ‎‎‎‎‎‎‎‎</b> </label>
+		<label><b>filter offers: ‎‎‎‎‎‎‎‎</b></label>
         <input 
 		  onChange={this.handleFilterOffers}
         />
-		<h6>(try typing "funds", "$", "labour", etc.)</h6>
+		<h6>(try "$", "grocery", "labour", etc.)</h6>
 		<br></br>
     </form>
 	<input type="checkbox" name="hideFulfilledOffers" checked={this.state.hideFulfilledOffers} onChange={this.handleFulfilledOffers}></input>
