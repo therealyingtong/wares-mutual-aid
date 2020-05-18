@@ -25,7 +25,7 @@ class UpdateForm extends React.Component{
         const range = this.props.column + this.props.row
         const url = "https://docs.google.com/spreadsheets/d/" + sheetId + "/edit#gid=" + this.props.gid + "&range=" + range
 
-        window.open(url, "_blank")
+        window.open(url, "_blank", "scrollbars=1");
         event.preventDefault()
     }
 

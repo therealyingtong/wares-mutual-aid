@@ -88,7 +88,7 @@ class Offers extends React.Component {
 
 				{matchIndices.map((index) => (
 					<div class="card">
-						<div class="card-header">{this.props.datesOffers[index]}, edited [{this.props.editsOffers[index]}], status [{this.props.statusOffers[index]}] </div>
+						<div class="card-header">{this.props.datesOffers[index]}, until [{this.props.untilWhen[index]}], edited [{this.props.editsOffers[index]}], status [{this.props.statusOffers[index]}] </div>
 						<div class="card-body">
 							<h5 class="card-title">{index + 1}. {this.props.namesOffers[index]}</h5>
 							<h6 class="card-subtitle mb-2 text-muted">location: {this.props.locationsOffers[index]}</h6>

@@ -19,6 +19,7 @@ class App extends Component {
 			statusNeeds: [],
 			assistedBy: [],
 			datesOffers: [],
+			untilWhen: [],
 			editsOffers: [],
 			namesOffers: [],
 			locationsOffers: [],
@@ -110,10 +111,10 @@ class App extends Component {
 		this.setState(obj)
 	}
 
-	const keys1 = ['datesOffers', 'editsOffers', 'namesOffers', 'locationsOffers', 'contactsOffers', 'detailsOffers', 'labelsOffers', 'statusOffers', 'updateOffers']
+	const keys1 = ['datesOffers', 'untilWhen', 'editsOffers', 'namesOffers', 'locationsOffers', 'contactsOffers', 'detailsOffers', 'labelsOffers', 'statusOffers', 'updateOffers']
 	const rowStart1 = '4'
 	const rowEnd1 = '200'
-	const columns1 = ['A', 'K', 'B', 'H', 'I', 'F', 'E', 'J', 'L']
+	const columns1 = ['A', 'G', 'K', 'B', 'H', 'I', 'F', 'E', 'J', 'L']
 
 	for (var i = 0; i < keys1.length; i++){
 		const range = columns1[i] + rowStart1 + ':' + columns1[i] + rowEnd1
@@ -179,7 +180,8 @@ class App extends Component {
 	hideFulfilledNeeds={this.state.hideFulfilledNeeds}
 	newestFirstNeeds={this.state.newestFirstNeeds}
 	/>
-	< Offers datesOffers = {this.state.datesOffers}
+    < Offers datesOffers = {this.state.datesOffers}
+	untilWhen = {this.state.untilWhen}
 	editsOffers = {this.state.editsOffers}
 	namesOffers = {this.state.namesOffers}
 	locationsOffers={this.state.locationsOffers}
