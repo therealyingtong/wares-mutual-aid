@@ -8,6 +8,7 @@ class App extends Component {
 		super(props)
 		this.state = {
 			datesNeeds: [],
+			byWhen: [],
 			editsNeeds: [],
 			namesNeeds: [],
 			locationsNeeds: [],
@@ -92,10 +93,10 @@ class App extends Component {
 		mode: 'cors'
 	}
 
-	const keys = ['datesNeeds', 'editsNeeds', 'namesNeeds', 'locationsNeeds', 'contactsNeeds', 'detailsNeeds', 'labelsNeeds', 'statusNeeds', 'assistedBy', 'updateNeeds']
+	const keys = ['datesNeeds', 'byWhen', 'editsNeeds', 'namesNeeds', 'locationsNeeds', 'contactsNeeds', 'detailsNeeds', 'labelsNeeds', 'statusNeeds', 'assistedBy', 'updateNeeds']
 	const rowStart = '4'
 	const rowEnd = '200'
-	const columns = ['A', 'K', 'B', 'H', 'I', 'F', 'E', 'J', 'L', 'M']
+	const columns = ['A', 'G', 'K', 'B', 'H', 'I', 'F', 'E', 'J', 'L', 'M']
 
 	for (var i = 0; i < keys.length; i++){
 		const range = columns[i] + rowStart + ':' + columns[i] + rowEnd
@@ -164,6 +165,7 @@ class App extends Component {
 	<label for="newestFirstOffers"> show newest first</label><br></br>
 	</div>
 	< Needs datesNeeds = {this.state.datesNeeds}
+	byWhen = {this.state.byWhen}
 	editsNeeds = {this.state.editsNeeds}
 	namesNeeds = {this.state.namesNeeds}
 	locationsNeeds={this.state.locationsNeeds}

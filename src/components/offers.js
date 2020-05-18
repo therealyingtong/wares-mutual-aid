@@ -34,6 +34,7 @@ class Offers extends React.Component {
 		}
 	}
 
+
 	render() {
 
 		var matchIndices = []
@@ -95,7 +96,8 @@ class Offers extends React.Component {
 							<p class="card-text">{this.props.contactsOffers[index]}</p>
 							<p class="card-text">{this.props.detailsOffers[index]}</p>
 							<UpdateForm index={index}
-								updateOffers={this.props.updateOffers}
+								updates={this.props.updateOffers}
+								gid={"1773210002"}
 								formText={"updates"}
 								sheetName={"Offers"}
 								column={"L"}
