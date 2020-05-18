@@ -13,19 +13,20 @@ class UpdateForm extends React.Component{
     }
     
     async handleSubmit(event){
-        console.log(this.state.value)
-        var copyText = document.getElementById("updates");
-        copyText.select();
-        copyText.setSelectionRange(0,99999);
-        document.execCommand("copy");
+        // console.log(this.state.value)
+        // var copyText = document.getElementById("updates");
+        // copyText.select();
+        // copyText.setSelectionRange(0,99999);
+        // document.execCommand("copy");
 
-        alert("the following text has been copied to your clipboard:\n\n'" + this.state.value + "'\n\npaste it in the spreadsheet cell. redirecting...");
+        // alert("the following text has been copied to your clipboard:\n\n'" + this.state.value + "'\n\npaste it in the spreadsheet cell. redirecting...");
 
         const sheetId = '1XzScy_hXVg7hVScZ_g6RBxq-ubkyvt601zD88w1IOo4';
         const range = this.props.column + this.props.row
         const url = "https://docs.google.com/spreadsheets/d/" + sheetId + "/edit#gid=" + this.props.gid + "&range=" + range
 
         window.open(url, "_blank")
+        event.preventDefault()
     }
 
     handleChange(event){
@@ -46,9 +47,10 @@ class UpdateForm extends React.Component{
 
         return(
             <form onSubmit = {this.handleSubmit}>
-                <p><b>{this.props.formText}:</b></p>
-                <textarea rows="2" style={{width:"90%"}} value={this.state.value} defaultValue={this.props.updates[this.props.index]} onChange={this.handleChange} id="updates"></textarea>
-                <input type="submit" value="submit changes"></input>
+                <p><b>{this.props.formText}:</b>
+                <textarea disabled rows="2" style={{width:"90%"}} value={this.state.value} defaultValue={this.props.updates[this.props.index]} onChange={this.handleChange} id="updates"></textarea>
+                <input type="submit" value="edit on spreadsheet"></input>
+                </p> 
             </form> 
         )
     }
