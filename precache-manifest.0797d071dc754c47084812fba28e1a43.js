@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "d41f62288fab8ef3a11ce5853ca4aa70",
+    "revision": "59cd4e8279981f906f9b6bb76ec32554",
     "url": "/wares-mutual-aid/index.html"
   },
   {
@@ -8,8 +8,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/wares-mutual-aid/static/js/2.c995f304.chunk.js"
   },
   {
-    "revision": "1ddd5fb4be9e98f05bd3",
-    "url": "/wares-mutual-aid/static/js/main.73bd4b1f.chunk.js"
+    "revision": "f642406bf7e06ed84319",
+    "url": "/wares-mutual-aid/static/js/main.767d259a.chunk.js"
   },
   {
     "revision": "703c18583baf06c1c0ba",
