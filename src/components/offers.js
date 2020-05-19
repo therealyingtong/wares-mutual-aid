@@ -100,7 +100,7 @@ class Offers extends React.Component {
 								gid={"1773210002"}
 								formText={"updates"}
 								sheetName={"Offers"}
-								column={"L"}
+								column={"I"}
 								row={this.getRowNumber(
 									this.props.namesOffers[index],
 									this.props.datesOffers[index],

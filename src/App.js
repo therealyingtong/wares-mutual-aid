@@ -97,7 +97,7 @@ class App extends Component {
 	const keys = ['datesNeeds', 'byWhen', 'editsNeeds', 'namesNeeds', 'locationsNeeds', 'contactsNeeds', 'detailsNeeds', 'labelsNeeds', 'statusNeeds', 'assistedBy', 'updateNeeds']
 	const rowStart = '4'
 	const rowEnd = '200'
-	const columns = ['A', 'G', 'K', 'B', 'H', 'I', 'F', 'E', 'J', 'L', 'M']
+	const columns = ['M', 'F', 'C', 'A', 'J', 'G', 'E', 'D', 'B', 'I', 'H']
 
 	for (var i = 0; i < keys.length; i++){
 		const range = columns[i] + rowStart + ':' + columns[i] + rowEnd
@@ -114,7 +114,7 @@ class App extends Component {
 	const keys1 = ['datesOffers', 'untilWhen', 'editsOffers', 'namesOffers', 'locationsOffers', 'contactsOffers', 'detailsOffers', 'labelsOffers', 'statusOffers', 'updateOffers']
 	const rowStart1 = '4'
 	const rowEnd1 = '200'
-	const columns1 = ['A', 'G', 'K', 'B', 'H', 'I', 'F', 'E', 'J', 'L']
+	const columns1 = ['L', 'F', 'C', 'A', 'H', 'G', 'E', 'D', 'B', 'I']
 
 	for (var i = 0; i < keys1.length; i++){
 		const range = columns1[i] + rowStart1 + ':' + columns1[i] + rowEnd1

@@ -104,7 +104,7 @@ class Needs extends React.Component {
 						updates = {this.props.updateNeeds}
 						formText = {"updates"}
 						sheetName = {"Needs"}
-						column = {"M"}
+						column = {"H"}
 						row={this.getRowNumber(
 							this.props.namesNeeds[index],
 							this.props.datesNeeds[index],
@@ -121,7 +121,7 @@ class Needs extends React.Component {
 						updates = {this.props.assistedBy}
 						formText = {"assisted by"}
 						sheetName = {"Needs"}
-						column = {"L"}
+						column = {"I"}
 						row={this.getRowNumber(
 							this.props.namesNeeds[index],
 							this.props.datesNeeds[index],

@@ -47,7 +47,7 @@ class UpdateForm extends React.Component{
 
         return(
             <form onSubmit = {this.handleSubmit}>
-                <p><b>{this.props.formText}:</b>
+                <p><b>{this.props.formText}:</b><br></br>
                 <textarea disabled rows="2" style={{width:"90%"}} value={this.state.value} defaultValue={this.props.updates[this.props.index]} onChange={this.handleChange} id="updates"></textarea>
                 <input type="submit" value="edit on spreadsheet"></input>
                 </p> 
